@@ -1,42 +1,19 @@
-import Vue from 'vue';
-
 export default {
 	namespaced: true,
 	state: {
-		items: {},
-		itemsLoaded: false
+		items: getProducts()
 	},
 	getters: {
-		items(state){
-			return state.items;
+		items(state) {
+			return state.items
 		},
-		itemsLoaded(state){
-			return state.itemsLoaded;
-		},
-		product: (state, getters) => (id) => {
-			return getters.items[id];
-		}
-	},
-	mutations: {
-		setItems(state, items){
-			state.items = items;
-			state.itemsLoaded = true;
-		}
-	},
-	actions: {
-		loadItems(store){
-			if(!store.state.itemsLoaded){
-				Vue.http.get('products.php')
-				   .then((response) => {
-				   		store.commit('setItems', response.data);
-				   });
-			}
+		product: (state) => (id) => {
+			return state.items[id]
 		}
 	}
 }
 
-/*
-function getProducts(){
+function getProducts() {
 	return {
 		1: {
 			id_product: 1,
@@ -54,4 +31,4 @@ function getProducts(){
 			price: 20000
 		}
 	}
-}*/
+}

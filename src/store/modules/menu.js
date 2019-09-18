@@ -7,17 +7,17 @@ export default {
 				route: 'products'
 			},
 			{
-				title: 'Your Cart',
+				title: 'You Cart',
 				route: 'cart'
 			},
 			{
 				title: 'Checkout',
 				route: 'checkout'
-			}
+			},
 		]
 	},
 	getters: {
-		items(state){
+		items(state) {
 			return state.items;
 		}
 	}

@@ -1,15 +1,13 @@
-import Vue from 'vue'; 
-import VueRouter from 'vue-router'; 
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import ProductsList from './components/ProductsList';
-import Product from './components/Product';
 import Cart from './components/Cart';
-import E404 from './components/E404';
 import Checkout from './components/Checkout';
-
-import {store} from './store';
+import E404 from './components/E404';
+import Product from './components/Product';
+import ProductsList from './components/ProductsList';
 
 const routes = [
 	{
@@ -17,23 +15,19 @@ const routes = [
 		redirect: {name: 'products'}
 	},
 	{
+		name: 'cart',
+		path: '/cart',
+		component: Cart
+	},
+	{
 		name: 'products',
 		path: '/products',
-		component: ProductsList,
-		beforeEnter(from, to, next){
-			store.dispatch('products/loadItems');
-			next();
-		}
+		component: ProductsList
 	},
 	{
 		name: 'product',
 		path: '/products/:id',
 		component: Product
-	},
-	{
-		name: 'cart',
-		path: '/cart',
-		component: Cart
 	},
 	{
 		name: 'checkout',
@@ -43,9 +37,8 @@ const routes = [
 	{
 		path: '*',
 		component: E404
-	}
+	},
 ];
-
 
 
 export default new VueRouter({
